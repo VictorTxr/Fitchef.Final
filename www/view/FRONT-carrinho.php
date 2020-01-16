@@ -17,10 +17,28 @@
             // Inicio HTML
             ?>
             <?php include "FRONT-carrinhovazio.php" ?>
-
+            
             <?php
             // Fim HTML
         }else{
+            ?>
+            <i class="fas fa-truck fa-3x"></i>
+            <form method="post" action="<?php echo $url; ?>/frete/calcular">
+                <label>Frete</label>
+                <input type="text" size="6" name="cep" />
+                <button class="btn btn-outline-secondary">Calcular</button>
+            </form>
+            <?php
+            if(isset($_POST['cep'])){
+                echo "<p>Preço: R$ ".$frete->getValor()."</p>";
+                echo "<p>Entrega: R$ ".$frete->getPrazoEntrega()." dias</p>";
+                echo '<a href="'.$url.'/pedido/finalizar" class="btn btn-success">Finalizar</a>';
+                
+            }else{
+                echo "<p>Insira o CEP</p>";
+                echo '<a href="'.$url.'/pedido/finalizar" class="btn btn-success disabled">Finalizar</a>';
+            }
+        
 
             foreach ($carrinho->getItems() as $item){
                 $produto = $item->getProduto();
@@ -40,7 +58,7 @@
 
                     <div class="col-sm-3 tabelacarrinho">
 
-                        <img width="100%" src="<?php echo $url.'/view/img/produtos/'.$produto->getImagem(); ?>">
+                        <img width="100%" src="<?php echo $url.'/img/produtos/'.$produto->getImagem(); ?>">
 
 
                     </div>
@@ -63,33 +81,7 @@
         }
     ?>
 
-<div class="container containerfrete">
-<div class="row">
 
-            <div class="col-sm-6 container">
-                <i class="fas fa-truck fa-3x"></i>
-                <form method="post" action="<?php echo $url; ?>/frete/calcular">
-                    <label>Frete</label>
-                    <input type="text" size="6" name="cep" />
-                    <button class="btn btn-outline-secondary">Calcular</button>
-                </form>
-               
-
-        </div>
-
-        <div class="col-sm-6 container">
-        <?php 
-        if(isset($_POST['cep'])){
-            echo "<p>Preço: R$ ".$frete->getValor()."</p>";
-            echo "<p>Entrega: R$ ".$frete->getPrazoEntrega()." dias</p>";
-        }
-        ?>
-        </div>
-
-  
-
-        </div>
-        </div>
 
 
             </div>

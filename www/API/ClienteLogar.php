@@ -10,10 +10,10 @@ class ClienteLogar{
     public $msg;
 
     function __construct($url){
+     
+        if($_POST['email']){
 
-if($_POST){
-
-   
+    
         
         try{
             //CRIAMOS UM OBJETO usuario
@@ -21,13 +21,17 @@ if($_POST){
             $obj->setEmail($_POST['email']);
             $obj->setSenha($_POST['senha']);
 
+            echo $obj->getEmail();
+            echo $obj->getSenha();
+
            $DAO = new DAOCliente();
-           $result = $DAO->buscaPorNomeSenha($obj);
+           $result = $DAO->buscaPorEmailSenha($obj);
+           $this->verificaUrl($url);
            
            if($result){
             
-            $_SESSION['clienteid'] = $result['pk_cliente'];
-            $_SESSION['clientenome'] = $result['nome'];
+                $_SESSION['clienteid'] = $result['pk_cliente'];
+                $_SESSION['clientenome'] = $result['nome'];
                 
                 header("location:{$url}/cliente/painel");
            }else{
@@ -38,12 +42,24 @@ if($_POST){
 
         }catch(\Exception $e){
             $this->msg = $e->getMessage();
-            
-        
         }
     }
 }
-}
+            function verificaurl($url){ 
+
+                if(isset($_SESSION['url'])){ 
+
+                    $url2 = $_SESSION['url'];
+                    //unset($_SESSION['url']);
+                    header("location: ". $url2."/pagamento/finalizar");
+
+                     }else{ 
+                        // header("location: ".$url. "/painel/cliente");
+            
+        
+                }
+    }
     
+}
 
     ?>

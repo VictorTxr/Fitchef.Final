@@ -1,6 +1,6 @@
 <?php include "view/header.php" ?>
 
-<form class="form-horizontal" method="post" action="cadastrar">
+<form class="form-horizontal" method="post" action="<?php echo $url; ?>/cliente/cadastrar">
         <fieldset>
 
             <!-- Form Name -->

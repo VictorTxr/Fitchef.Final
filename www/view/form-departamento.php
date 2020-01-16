@@ -9,7 +9,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="">Departamento</label>
             <div class="col-md-4">
-                <input id="" name="nome" type="text" placeholder="" class="form-control input-md">
+                <input id="nome" name="nome" type="text" placeholder="" class="form-control input-md">
 
             </div>
         </div>
@@ -17,7 +17,7 @@
         <div class="form-group">
                 <label class="col-md-4 control-label" for=""></label>
                 <div class="col-md-4">
-                    <button id="" name="Cadastrar" class="btn btn-primary">Cadastrar</button>
+                    <button id="singlebutton" name="Cadastrar" class="btn btn-primary">Cadastrar</button>
                 </div>
             </div>
     </fieldset>

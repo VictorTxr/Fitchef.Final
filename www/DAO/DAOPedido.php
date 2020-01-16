@@ -25,10 +25,10 @@ use FITCHEF\Model\Carrinho;
             $con->bindValue(":data_pedido", $pedido->getData());
             $con->bindValue(":frete", $pedido->getFrete());
             $con->bindValue(":dias", $pedido->getDias());
-            $con->bindValue(":fk_cliente", $pedido->getCliente()->getId());
+            $con->bindValue(":fk_cliente", $_SESSION['clienteid']);
             $con->execute();
-            $lastId = $pdo->lastInsertId(); 
-
+            $lastId = $pdo->lastInsertId();
+            $_SESSION['idpedido'] = $lastId; 
             $con2 = $pdo->prepare(
                 "INSERT INTO item
                         VALUES ( :fk_pedido,:fk_produto, :quantidade)");
@@ -49,6 +49,30 @@ use FITCHEF\Model\Carrinho;
         $pdo->rollback();
         return "Erro ao efetuar o pedido";
     }
+
+      }
+
+      public function listarPedidoCliente($idCliente){
+
+        $sql = "SELECT 
+        pedido.data_pedido,
+        SUM(produto.preco*item.quantidade) as total
+    
+        FROM pedido
+        INNER JOIN cliente
+        ON pedido.fk_cliente = cliente.pk_cliente;
+
+        inner join item
+        on item.fk_pedido = pedido.pk_pedido
+
+        inner join produto
+        on produto.pk_produto = item.fk_produto
+
+        where cliente.pk_cliente = :id";
+      $con = Conexao::getInstance()->prepare($sql);
+      $con->bindValue(":id", $idCliente);
+      $result = $con->execute();
+
 
       }
     }

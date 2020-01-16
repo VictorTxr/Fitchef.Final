@@ -34,8 +34,14 @@
             
             $obj = new \FITCHEF\API\ClienteCadastrar;
             $msg = $obj->msg;
-            $view = "form-cliente.php";
+            $view = "FRONT-cadastro.php";
             break;
+
+        case 'clientepainel':
+
+            $view = "FRONT-painelcliente.php";
+            break;
+                
 
         case 'clientelistar':
 
@@ -160,6 +166,9 @@
             $view = "FRONT-cardapio.php";
         break;
 
+        case 'pagamento' :
+            $view = "FRONT-pagamento.php";
+        break;
         
         case 'quemsomos':
             $view = "FRONT-quemsomos.php";
@@ -198,6 +207,11 @@
             $view = "FRONT-carrinho.php";
         break;
 
+        case 'cadastrar':
+            $obj = new \FITCHEF\API\UsuarioCadastrar;
+            $view = "FRONT-cadastro.php";
+            break;
+
         
         case 'produtobuscar':
             $obj = new \FITCHEF\API\ProdutoBuscaNome;
@@ -206,6 +220,16 @@
         break;
 
 
+        case 'pedidopagamento':
+            //$obj = new \FITCHEF\EfetuarPagamento($url);
+            //$obj = new \FITCHEF\DepartamentoListar;
+            //$lista = $obj->lista;
+
+            $view= 'FRONT-pagamento.php'; //PÁGINA LOGIN CLIENTE
+         break;
+
+         
+
         case 'fretecalcular':
             $obj = new \FITCHEF\API\CalcularFrete;
             $frete = $obj->frete;
@@ -213,14 +237,35 @@
             $view = "FRONT-carrinho.php";
         break;
 
+    /*alterações*/
+    case 'pedidofinalizar':
+            //\FITCHEF\includes\Seguranca::restritoUsuario();
+            $obj = new \FITCHEF\API\PedidoCadastrar($url);  
+        break;
+        
+        case 'logincliente':
+           $obj = new \FITCHEF\API\ClienteLogar($url);
+           $msg = $obj->msg;
+           $view ="FRONT-logincadastro.php";
+        break;
 
+        
+        case 'painelcliente':
+            $view ="FRONT-cliente-painel.php";
+            break;   
+       
+        case 'painellogoff';
+            $obj = new \FITCHEF\API\ClienteLogoff;
+            $view = "FRONT-logincadastro.php";
+            break;
+            
         default:
-            $view = "home.php";
+        $view = "FRONT-inicio.php";
         break; 
-    }
 
-
+        }
  
+    
     include "view/{$view}";
 
   

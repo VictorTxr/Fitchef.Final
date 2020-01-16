@@ -89,9 +89,8 @@ use FITCHEF\Model\Usuario;
 
         }
 
-        public function buscaPorNomeSenha(Cliente $cliente){
+        public function buscaPorEmailSenha(Cliente $cliente){
             $sql = "SELECT * FROM cliente WHERE email = :email AND senha = :senha";
-
 
             $con = Conexao::getInstance()->prepare($sql);
             $con->bindValue(":email", $cliente->getEmail());
@@ -101,8 +100,9 @@ use FITCHEF\Model\Usuario;
 
 
 
-                $obj = new Usuario();
+                $obj = new Cliente();
                 $obj = $con->fetch(\PDO::FETCH_ASSOC);
+                var_dump($obj);
                 return $obj;
            
             

@@ -8,9 +8,10 @@
       public $msg;
   
       function __construct(){
-    
+        echo "ok2";
+        echo $_POST['nome'];
     if($_POST){
-        
+      echo "ok1";
         try{
             $obj = new Cliente();
             $obj->setNome($_POST['nome']);
@@ -26,6 +27,7 @@
 
         }catch(\Exception $e){
             $this->msg = $e->getMessage();
+            echo $this->msg;
         
         }
     }

@@ -1,6 +1,6 @@
 <?php include "FRONT-header.php" ?>
 
-<br><br><br><br><br><br>
+
 
 <div class="container quemsomos">
 

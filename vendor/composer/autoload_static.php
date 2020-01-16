@@ -23,6 +23,7 @@ class ComposerStaticInitc4c2223dc828a5033311dfa8d9c36634
         'S' => 
         array (
             'Symfony\\Polyfill\\Ctype\\' => 23,
+            'Symfony\\Component\\Process\\' => 26,
         ),
         'P' => 
         array (
@@ -30,6 +31,7 @@ class ComposerStaticInitc4c2223dc828a5033311dfa8d9c36634
         ),
         'F' => 
         array (
+            'Facebook\\WebDriver\\' => 19,
             'FITCHEF\\' => 8,
         ),
         'D' => 
@@ -54,9 +56,17 @@ class ComposerStaticInitc4c2223dc828a5033311dfa8d9c36634
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
+        'Symfony\\Component\\Process\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/process',
+        ),
         'Prophecy\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy',
+        ),
+        'Facebook\\WebDriver\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/facebook/webdriver/lib',
         ),
         'FITCHEF\\' => 
         array (
