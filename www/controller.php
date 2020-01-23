@@ -40,6 +40,17 @@
         case 'clientepainel':
 
             $view = "FRONT-painelcliente.php";
+            $obj = new \FITCHEF\API\PedidoListar;
+            $pedidos = $obj ->lista;
+            break;
+
+
+        case 'painelpedido':
+            $obj = new \FITCHEF\API\PedidoVisualiza;
+            $dados = $obj->dados;
+            $produtos = $obj->produtos;
+            
+            $view = "visualiza-pedido.php";
             break;
                 
 
@@ -96,6 +107,14 @@
             $view = "lista-produto.php";
             break;
             
+            case 'pedidolistar':
+
+                $obj = new \FITCHEF\API\PedidoListar;
+                $lista = $obj->lista;
+                $view = "lista-pedidos.php";
+                break;
+
+                
         case 'produtovisualizar':
 
             $obj = new \FITCHEF\API\ProdutoVisualizar;
@@ -132,7 +151,6 @@
             $view ="form-login-adm.php";
             break;
 
-
             
         case 'paineladm':
             $view ="painel-adm.php";
@@ -149,8 +167,6 @@
             $lista = $obj->lista;
             $view = "FRONT-inicio.php";
             break;            
-
-
 
              
         case 'porcoes':
@@ -221,10 +237,11 @@
 
 
         case 'pedidopagamento':
-            //$obj = new \FITCHEF\EfetuarPagamento($url);
+           
             //$obj = new \FITCHEF\DepartamentoListar;
             //$lista = $obj->lista;
-
+            $obj = new \FITCHEF\API\PagamentoVisualizar;
+            $pagamento = $obj->pagamento;
             $view= 'FRONT-pagamento.php'; //PÁGINA LOGIN CLIENTE
          break;
 
@@ -249,16 +266,13 @@
            $view ="FRONT-logincadastro.php";
         break;
 
-        
-        case 'painelcliente':
-            $view ="FRONT-cliente-painel.php";
-            break;   
-       
+
         case 'painellogoff';
             $obj = new \FITCHEF\API\ClienteLogoff;
             $view = "FRONT-logincadastro.php";
             break;
             
+
         default:
         $view = "FRONT-inicio.php";
         break; 
@@ -270,4 +284,3 @@
 
   
 ?>
-

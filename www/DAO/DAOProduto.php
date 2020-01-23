@@ -56,6 +56,7 @@ use FITCHEF\Model\Produto;
             $produto->setId($obj['pk_produto']);
             $produto->setNome($obj['nome']);
             $produto->setPreco($obj['preco']);
+            $produto->setDescricao($obj['descricao']);
             $produto->setImagem($obj['imagem']);
     
             return $produto;

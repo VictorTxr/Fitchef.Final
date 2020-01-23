@@ -14,7 +14,7 @@
         <br>
         <p>Para continuar comprando, navegue pelas categorias do site ou faça uma busca pelo seu produto.</p>
         <br>
-        <a href="#" class="btn btn-primary btn">Escolha produtos</a>
+        <a href="cardapio" class="btn btn-primary btn">Escolha produtos</a>
 
 
     

@@ -1,4 +1,4 @@
-<?php require_once "FRONT-cliente-header.php"; ?>
+<?php include "FRONT-cliente-header.php"; ?>
 
 
 <section class="container">
