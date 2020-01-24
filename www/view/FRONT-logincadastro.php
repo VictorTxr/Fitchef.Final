@@ -1,6 +1,14 @@
 <?php require_once "FRONT-header.php"; 
 ?>
 
+<?php
+
+if(isset($_SESSION['clienteid'])){
+    header("location: ".$url."/cliente/painel");
+}
+
+?>
+
 	
 		<div class="login-container login-form-1">
             

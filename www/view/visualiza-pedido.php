@@ -5,7 +5,11 @@
         <form class="form-horizontal" method="post" action="cadastrar">
             <fieldset>
 
-                <legend> Pedido ID <?php echo $dados['pk_pedido']; ?></legend>
+                <legend> Pedido ID <?php 
+                
+                //var_dump($dados);
+                
+                //echo $dados['pk_pedido']; ?></legend>
 
                 <div class="form-group">
                     <label class="col-md-12 control-label" for="nome"> Data da Compra</label>
@@ -60,9 +64,11 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($produtos as $produto) { ?>
+                <?php 
+                
+                foreach($produtos as $produto) { ?>
                 <tr>
-                    <td><img width="50" src="<?php echo $url; ?>/View/img/produtos/<?php echo $produto['imagem'] ?>">
+                    <td><img width="180" src="<?php echo $url; ?>/img/produtos/<?php echo $produto['imagem'] ?>">
                         </td>
                     <td><?php echo $produto['nome'] ?></td>
                     <td><?php echo $produto['quantidade'] ?></td>

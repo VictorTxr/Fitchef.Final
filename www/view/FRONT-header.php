@@ -51,6 +51,22 @@
             <a class="nav-link" href="<?php echo $url; ?>/contato">Contato</a>
           </li>
 
+
+        <?php 
+        if(isset($_SESSION['clienteid'])){
+
+          ?>
+
+<li class="nav-item px-3">
+            <a class="nav-link" href="<?php echo $url; ?>/cliente/logoff">Logoff</a>
+          </li>
+          <?php
+
+        }
+            
+            ?>
+
+
           <li class="nav-item px-3 ml-3">
             <a class="nav-link" href="<?php echo $url; ?>/login"><i class="fas fa-user-circle fa-2x"></i></a>
           </li>

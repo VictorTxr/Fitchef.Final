@@ -25,19 +25,14 @@ class PedidoCadastrar{
 
             try{ 
 
+                $frete = $_SESSION['frete'];    
                  $obj = new Pedido();
-                 $obj->setData('2019-12-25');
-                 $obj->setFrete(20.00);
-                 $obj->setDias(5);
+                 $obj->setData('Y-m-d');
+                 $obj->setFrete($frete->getValor());
+                 $obj->setDias($frete->getPrazoEntrega());
 
                  $DAO = new DAOPedido();
                  $this->msg = $DAO->cadastrar($obj,$_SESSION['carrinho']);
-
-                 echo $this->msg;
-
-                 if(isset($_SESSION['url'])){
-                     unset($_SESSION['url']);
-                 }
 
             }catch(Exception $e){ 
                 $this->msg = $e->getMessage();

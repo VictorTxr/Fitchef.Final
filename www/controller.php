@@ -38,7 +38,7 @@
             break;
 
         case 'clientepainel':
-
+            \FITCHEF\includes\Seguranca::restritoUsuario();
             $view = "FRONT-painelcliente.php";
             $obj = new \FITCHEF\API\PedidoListar;
             $pedidos = $obj ->lista;
@@ -47,7 +47,8 @@
 
         case 'painelpedido':
             $obj = new \FITCHEF\API\PedidoVisualiza;
-            $dados = $obj->dados;
+            $dados = $obj->pedido;
+           
             $produtos = $obj->produtos;
             
             $view = "visualiza-pedido.php";
@@ -267,14 +268,17 @@
         break;
 
 
-        case 'painellogoff';
+        case 'clientelogoff';
             $obj = new \FITCHEF\API\ClienteLogoff;
             $view = "FRONT-logincadastro.php";
             break;
             
 
         default:
+        $obj = new \FITCHEF\API\ProdutoListarHome;
+        $lista = $obj->lista;
         $view = "FRONT-inicio.php";
+        
         break; 
 
         }

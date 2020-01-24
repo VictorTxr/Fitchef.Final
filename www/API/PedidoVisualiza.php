@@ -7,18 +7,22 @@ use FITCHEF\DAO\DAOPedido;
 
 class PedidoVisualiza{
 
-    public $dados;
+    public $pedido;
     public $produtos;
 
 
     public function __construct(){
         try{
             $DAO = new DAOPedido();
-            $this->dados = $DAO->detalhaPedido($_GET['id']);
+            $this->pedido = $DAO->detalhaPedido($_GET['id']);
+            
             $this->produtos = $DAO->listaItens($_GET['id']);
+          
+           
+           
 
         }catch(\Exception $e){
-            $this->dados = $e->getMessage();
+            echo  $e->getMessage();
             
         
         }

@@ -49,17 +49,18 @@ use FITCHEF\Model\Carrinho;
         return "Erro ao efetuar o pedido";
     }
 
-      }
+  }
 
       public function listarPedidoCliente($idCliente){
 
         $sql = "SELECT 
           pedido.data_pedido,
+          pedido.pk_pedido,
           SUM(produto.preco*item.quantidade) as total
       
           FROM pedido
           INNER JOIN cliente
-          ON pedido.fk_cliente = cliente.pk_cliente;
+          ON pedido.fk_cliente = cliente.pk_cliente
 
           inner join item
           on item.fk_pedido = pedido.pk_pedido
@@ -67,16 +68,16 @@ use FITCHEF\Model\Carrinho;
           inner join produto
           on produto.pk_produto = item.fk_produto
 
-          where cliente.pk_cliente = :id
+          where cliente.pk_cliente = :id 
           group by pedido.pk_pedido";
 
         $con = Conexao::getInstance()->prepare($sql);
         $con->bindValue(":id", $idCliente);
-        $con-execute();
+        $con->execute();
         $lista = array();
         
         while($pedido = $con->fetch(\PDO::FETCH_ASSOC)) {
-          $lista{} = $pedido;
+          $lista[] = $pedido;
         }
         return $lista;
 
@@ -119,40 +120,47 @@ use FITCHEF\Model\Carrinho;
 
         public function detalhaPedido($idPedido){
           $sql = "SELECT
-                    pedido.pk_pedido,
-                    pedido.data_pedido,
-                    pedido.frete,
-                    pedido.dias,
-                    SUM(produto.preco*item.quantidade) as total
-                    FROM pedido INNER JOIN cliente
-                    ON pedido.fk_cliente = cliente.pk_cliente
-                    
-                    INNER JOIN produto
-                    on produto.pk_produto = item.fk_produto
-                    
-                    WHERE pedido.pk_pedido = :id";
+          pedido.pk_pedido,
+          pedido.data_pedido,
+          pedido.frete,
+          pedido.dias,
+          SUM(produto.preco*item.quantidade) as total
+          FROM pedido 
+          INNER JOIN cliente
+          ON pedido.fk_cliente = cliente.pk_cliente 
+          INNER JOIN item
+          ON item.fk_pedido = pedido.pk_pedido 
+          INNER JOIN produto
+          on produto.pk_produto = item.fk_produto 
+          
+          WHERE pedido.pk_pedido = :id";
+
                   $con = Conexao::getInstance()->prepare($sql);
                   $con->bindValue(":id", $idPedido);
                   $con->execute();
                   $pedido = $con->fetch(\PDO::FETCH_ASSOC);
+                  
                   return $pedido;  
         }
 
         public function listaItens($idPedido){
-          $sql = "SELECT * FROM 'item'
-                  inner join produto
-                  on produto.pk_produto = item.fk_produto
-                  where fk_pedido = :id";
+          $sql = "SELECT * FROM item
+          inner join produto 
+          on produto.pk_produto = item.fk_produto
+          where fk_pedido = :id";
 
           $con = Conexao::getInstance()->prepare($sql);
           $con->bindValue(":id", $idPedido);
           $con->execute();
           $lista = array();
+
+
+ 
           
-          while($pedido = $con->fetch(|PDO::FETCH_ASSOC)){
+          while($pedido = $con->fetch(\PDO::FETCH_ASSOC)){
               $lista[] = $pedido;
           }
-        
+        return $lista;
 
         }
 
